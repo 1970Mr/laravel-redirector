@@ -9,8 +9,7 @@ class CreateRedirectCommandTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function createRedirect(): void
+    public function test_create_redirect(): void
     {
         $this->artisan('redirect:create', [
             'source_url' => 'source-url',
