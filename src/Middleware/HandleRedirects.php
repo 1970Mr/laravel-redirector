@@ -14,14 +14,14 @@ class HandleRedirects
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
      */
     public function handle(Request $request, Closure $next): Response
     {
         $currentUrl = $request->fullUrl();
-        $cacheMethod = config('redirect-manager.cache_method', 'full_list');
+        $cacheMethod = config('redirector.cache_method', 'multiple');
 
-        if ($cacheMethod === 'full_list') {
+        if ($cacheMethod === 'multiple') {
             $redirect = $this->getRedirectFromFullList($currentUrl);
         } else {
             $redirect = $this->getRedirectFromSingleCache($currentUrl);
