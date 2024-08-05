@@ -24,7 +24,7 @@ class HandleRedirects
         if ($cacheMethod === 'full_list') {
             $redirect = $this->getRedirectFromFullList($currentUrl);
         } else {
-            $redirect = $this->getRedirectFromIndividualCache($currentUrl);
+            $redirect = $this->getRedirectFromSingleCache($currentUrl);
         }
 
         if ($redirect) {
@@ -36,7 +36,7 @@ class HandleRedirects
     /**
      * Get redirect from full cached list.
      */
-    protected function getRedirectFromFullList(string $currentUrl): Redirect
+    protected function getRedirectFromFullList(string $currentUrl): ?Redirect
     {
         /** @var Collection $redirects */
         $redirects = Cache::remember('redirects_list', 60 * 60 * 24, static function () {
@@ -48,7 +48,7 @@ class HandleRedirects
     /**
      * Get redirect from single cached entry.
      */
-    protected function getRedirectFromSingleCache(string $currentUrl): Redirect
+    protected function getRedirectFromSingleCache(string $currentUrl): ?Redirect
     {
         $cacheKey = 'redirect_' . md5($currentUrl);
         return Cache::remember($cacheKey, 60 * 60 * 24, static function () use ($currentUrl) {

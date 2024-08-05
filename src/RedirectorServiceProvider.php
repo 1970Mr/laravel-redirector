@@ -4,6 +4,8 @@ namespace Mr1970\LaravelRedirector;
 
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Support\ServiceProvider;
+use Mr1970\LaravelRedirector\Console\Commands\AddRedirectCommand;
+use Mr1970\LaravelRedirector\Console\Commands\RemoveRedirectCommand;
 use Mr1970\LaravelRedirector\Middleware\HandleRedirects;
 
 class RedirectorServiceProvider extends ServiceProvider
@@ -16,10 +18,17 @@ class RedirectorServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadMigrationsFrom($this->baseBath('database/migrations'));
+
         $this->mergeConfigFrom($this->baseBath('config/redirector.php'), 'redirector');
-        resolve(Middleware::class)->alias([
-            'redirector' => HandleRedirects::class
-        ]);
+
+        $this->app['router']->aliasMiddleware('redirector', HandleRedirects::class);
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                AddRedirectCommand::class,
+                RemoveRedirectCommand::class,
+            ]);
+        }
 
         $this->publishes([
             $this->baseBath('database/migrations') => 'database/migrations'
