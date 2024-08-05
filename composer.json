@@ -22,6 +22,11 @@
             "Mr1970\\LaravelRedirector\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Mr1970\\LaravelRedirector\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Mr 1970",
@@ -37,7 +42,7 @@
         "orchestra/testbench": "^9.0.0||^8.22.0"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "./vendor/bin/phpunit --colors=always"
     },
     "extra": {
         "laravel": {
