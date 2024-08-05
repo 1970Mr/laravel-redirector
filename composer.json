@@ -42,7 +42,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Laravel\\Redirector\\RedirectorServiceProvider"
+                "Mr1970\\LaravelRedirector\\RedirectorServiceProvider"
             ]
         }
     },
@@ -51,6 +51,6 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }
