@@ -39,7 +39,7 @@ class HandleRedirects
     protected function getRedirectFromFullList(string $currentUrl): ?Redirect
     {
         /** @var Collection $redirects */
-        $redirects = Cache::remember('redirects_list', 60 * 60 * 24, static function () {
+        $redirects = Cache::remember('redirects_list', config('redirector.cache_ttl'), static function () {
             return Redirect::active()->get();
         });
         return $redirects->firstWhere('source_url', $currentUrl);
@@ -51,7 +51,7 @@ class HandleRedirects
     protected function getRedirectFromSingleCache(string $currentUrl): ?Redirect
     {
         $cacheKey = 'redirect_' . md5($currentUrl);
-        return Cache::remember($cacheKey, 60 * 60 * 24, static function () use ($currentUrl) {
+        return Cache::remember($cacheKey, config('redirector.cache_ttl'), static function () use ($currentUrl) {
             return Redirect::query()->where('source_url', $currentUrl)->active()->first();
         });
     }

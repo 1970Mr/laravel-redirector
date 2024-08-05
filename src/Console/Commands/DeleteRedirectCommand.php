@@ -5,21 +5,21 @@ namespace Mr1970\LaravelRedirector\Console\Commands;
 use Illuminate\Console\Command;
 use Mr1970\LaravelRedirector\Models\Redirect;
 
-class RemoveRedirectCommand extends Command
+class DeleteRedirectCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'redirect:remove {source_url}';
+    protected $signature = 'redirect:delete {source_url}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Remove an existing redirect';
+    protected $description = 'Delete an existing redirect';
 
     /**
      * Execute the console command.
@@ -32,7 +32,7 @@ class RemoveRedirectCommand extends Command
 
         if ($redirect) {
             $redirect->delete();
-            $this->info('Redirect removed successfully.');
+            $this->info('Redirect deleted successfully.');
         } else {
             $this->error('Redirect not found.');
         }
