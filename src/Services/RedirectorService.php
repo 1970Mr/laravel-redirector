@@ -7,13 +7,19 @@ use Mr1970\LaravelRedirector\Models\Redirect;
 
 class RedirectorService
 {
-    public function sanitizeUrl(string $url): string
+    public function sanitizeUrl(?string $url): string
     {
+        $baseUrl = trim(config('app.url'), '/');
+
+        if (!$url) {
+            return $baseUrl;
+        }
+
         $url = trim($url, '/');
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            $url = config('app.url') . '/' . $url;
-            $url = trim($url, '/');
+            $url = $baseUrl . '/' . $url;
         }
+
         return $url;
     }
 
