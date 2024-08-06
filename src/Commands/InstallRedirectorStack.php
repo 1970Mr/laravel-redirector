@@ -3,9 +3,7 @@
 namespace Mr1970\LaravelRedirector\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Filesystem\Filesystem;
-use Mr1970\LaravelRedirector\Models\Redirect;
 
 class InstallRedirectorStack extends Command
 {
@@ -21,7 +19,7 @@ class InstallRedirectorStack extends Command
      *
      * @var string
      */
-    protected $description = 'Install the Redirector package stubs (controller, request and views)';
+    protected $description = 'Install the Redirector package stubs (controllers, requests, routes and views)';
 
     /**
      * Execute the console command.

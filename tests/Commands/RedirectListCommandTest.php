@@ -1,6 +1,6 @@
 <?php
 
-namespace Mr1970\LaravelRedirector\Tests\Unit;
+namespace Mr1970\LaravelRedirector\Tests\Commands;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mr1970\LaravelRedirector\Models\Redirect;

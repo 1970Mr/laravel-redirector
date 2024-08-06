@@ -1,6 +1,6 @@
 <?php
 
-namespace Mr1970\LaravelRedirector\Tests\Unit;
+namespace Mr1970\LaravelRedirector\Tests\Services;
 
 use Illuminate\Support\Facades\Config;
 use Mr1970\LaravelRedirector\Services\RedirectorService;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mr1970\LaravelRedirector\Tests\Feature;
+namespace Mr1970\LaravelRedirector\Tests\Middlewares;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
