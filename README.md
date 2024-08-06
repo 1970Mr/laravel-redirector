@@ -10,6 +10,7 @@ A Laravel package for managing URL redirects easily and efficiently.
     - [Middleware](#middleware)
     - [Artisan Commands](#artisan-commands)
     - [Controller and Views](#controller-and-views)
+    - [Custom Implementation](#custom-implementation)
 - [Caching](#caching)
 - [Testing](#testing)
 - [License](#license)
@@ -148,7 +149,7 @@ php artisan redirect:list
 
 ### Controller and Views
 
-Alternatively, you can set up a more customizable CRUD interface for redirects using controllers, requests, routes, and views. The package provides a command to scaffold these components:
+You can also set up a more customizable CRUD interface for redirects using controllers, requests, routes, and views. The package provides a command to scaffold these components:
 
 ```bash
 php artisan redirector:install
@@ -156,12 +157,16 @@ php artisan redirector:install
 
 This command will install the necessary controllers, requests, routes, and views for managing redirects through a web interface.
 
+### Custom Implementation
+
+Additionally, you can use the Redirect model directly to create, update, or delete redirects within your application code as needed. This approach allows for complete customization of how and where redirects are managed.
+
 ## Caching
 
 The package supports two caching methods:
 
-- **Full List**: All active redirects are cached as a single collection. This method is efficient for a small number of redirects but may become inefficient as the number of redirects grows.
-- **Single**: Each redirect is cached individually. This method scales better with a large number of redirects but may result in more cache operations.
+- **Full List**: All active redirects are cached as a single collection. This method is efficient for a small number of redirects but may become inefficient as the number of redirects grows. Any create, update, or delete operation will reset the entire list cache.
+- **Single**: Each redirect is cached individually. This method scales better with a large number of redirects but may result in more cache operations. Only the specific cached item is reset during create, update, or delete operations.
 
 You can configure the caching method and TTL in the `config/redirector.php` file to suit your application's needs.
 
