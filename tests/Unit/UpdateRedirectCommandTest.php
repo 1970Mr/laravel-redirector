@@ -3,7 +3,7 @@
 namespace Mr1970\LaravelRedirector\Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Mr1970\LaravelRedirector\Facades\Redirect as RedirectFacade;
+use Mr1970\LaravelRedirector\Facades\Redirector;
 use Mr1970\LaravelRedirector\Models\Redirect;
 use Mr1970\LaravelRedirector\Tests\TestCase;
 
@@ -13,9 +13,9 @@ class UpdateRedirectCommandTest extends TestCase
 
     public function test_update_redirect(): void
     {
-        $sourceUrl = RedirectFacade::sanitizeUrl('source-url');
-        $destinationUrl = RedirectFacade::sanitizeUrl('destination-url');
-        $newDestinationUrl = RedirectFacade::sanitizeUrl('new-destination-url');
+        $sourceUrl = Redirector::sanitizeUrl('source-url');
+        $destinationUrl = Redirector::sanitizeUrl('destination-url');
+        $newDestinationUrl = Redirector::sanitizeUrl('new-destination-url');
 
         Redirect::create([
             'source_url' => $sourceUrl,

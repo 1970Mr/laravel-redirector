@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  * @see Mr1970\LaravelRedirector\Services\RedirectService
  */
 
-class Redirect extends Facade
+class Redirector extends Facade
 {
     protected static function getFacadeAccessor(): string
     {

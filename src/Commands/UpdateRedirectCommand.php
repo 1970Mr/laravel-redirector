@@ -4,7 +4,7 @@ namespace Mr1970\LaravelRedirector\Commands;
 
 use Illuminate\Console\Command;
 use Mr1970\LaravelRedirector\Models\Redirect;
-use Mr1970\LaravelRedirector\Facades\Redirect as RedirectFacade;
+use Mr1970\LaravelRedirector\Facades\Redirector;
 
 class UpdateRedirectCommand extends Command
 {
@@ -27,7 +27,7 @@ class UpdateRedirectCommand extends Command
      */
     public function handle(): void
     {
-        $sourceUrl = RedirectFacade::sanitizeUrl($this->argument('source_url'));
+        $sourceUrl = Redirector::sanitizeUrl($this->argument('source_url'));
         $redirect = Redirect::query()->where('source_url', $sourceUrl)->first();
 
         if (!$redirect) {

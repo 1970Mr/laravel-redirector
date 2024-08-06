@@ -48,6 +48,9 @@
         "laravel": {
             "providers": [
                 "Mr1970\\LaravelRedirector\\RedirectorServiceProvider"
+            ],
+            "aliases": [
+                "Redirector", "Mr1970\\LaravelRedirector\\Facades\\Redirector"
             ]
         }
     },

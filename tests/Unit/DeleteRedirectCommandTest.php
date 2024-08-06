@@ -3,7 +3,7 @@
 namespace Mr1970\LaravelRedirector\Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Mr1970\LaravelRedirector\Facades\Redirect as RedirectFacade;
+use Mr1970\LaravelRedirector\Facades\Redirector;
 use Mr1970\LaravelRedirector\Models\Redirect;
 use Mr1970\LaravelRedirector\Tests\TestCase;
 
@@ -13,8 +13,8 @@ class DeleteRedirectCommandTest extends TestCase
 
     public function test_delete_redirect(): void
     {
-        $sourceUrl = RedirectFacade::sanitizeUrl('source-url');
-        $destinationUrl = RedirectFacade::sanitizeUrl('destination-url');
+        $sourceUrl = Redirector::sanitizeUrl('source-url');
+        $destinationUrl = Redirector::sanitizeUrl('destination-url');
 
         Redirect::create([
             'source_url' => $sourceUrl,

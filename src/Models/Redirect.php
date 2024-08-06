@@ -5,7 +5,7 @@ namespace Mr1970\LaravelRedirector\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Mr1970\LaravelRedirector\Facades\Redirect as RedirectFacade;
+use Mr1970\LaravelRedirector\Facades\Redirector;
 
 class Redirect extends Model
 {
@@ -20,11 +20,11 @@ class Redirect extends Model
     {
         $cacheMethod = config('redirector.cache_method', 'full_list');
         static::saved(static function ($redirect) use ($cacheMethod) {
-            RedirectFacade::forgetCache($cacheMethod, $redirect);
+            Redirector::forgetCache($cacheMethod, $redirect);
         });
 
         static::deleted(static function ($redirect) use ($cacheMethod) {
-            RedirectFacade::forgetCache($cacheMethod, $redirect);
+            Redirector::forgetCache($cacheMethod, $redirect);
         });
 
         parent::booted();
@@ -38,14 +38,14 @@ class Redirect extends Model
     protected function sourceUrl(): Attribute
     {
         return Attribute::make(
-            set: static fn(string $value) => RedirectFacade::sanitizeUrl($value),
+            set: static fn(string $value) => Redirector::sanitizeUrl($value),
         );
     }
 
     protected function destinationUrl(): Attribute
     {
         return Attribute::make(
-            set: static fn(string $value) => RedirectFacade::sanitizeUrl($value),
+            set: static fn(string $value) => Redirector::sanitizeUrl($value),
         );
     }
 }
