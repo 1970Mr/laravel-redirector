@@ -3,7 +3,7 @@
 namespace Mr1970\LaravelRedirector\Tests\Unit;
 
 use Illuminate\Support\Facades\Config;
-use Mr1970\LaravelRedirector\Services\RedirectService;
+use Mr1970\LaravelRedirector\Services\RedirectorService;
 use Mr1970\LaravelRedirector\Models\Redirect;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -14,12 +14,12 @@ class RedirectServiceTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    protected RedirectService $redirectService;
+    protected RedirectorService $redirectService;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->redirectService = new RedirectService();
+        $this->redirectService = new RedirectorService();
     }
 
     public function test_sanitize_url_with_full_url(): void

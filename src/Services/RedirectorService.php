@@ -5,16 +5,16 @@ namespace Mr1970\LaravelRedirector\Services;
 use Illuminate\Support\Facades\Cache;
 use Mr1970\LaravelRedirector\Models\Redirect;
 
-class RedirectService
+class RedirectorService
 {
-    public function sanitizeUrl(string $value): string
+    public function sanitizeUrl(string $url): string
     {
-        $value = trim($value, '/');
-        if (!filter_var($value, FILTER_VALIDATE_URL)) {
-            $value = config('app.url') . '/' . $value;
-            $value = trim($value, '/');
+        $url = trim($url, '/');
+        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+            $url = config('app.url') . '/' . $url;
+            $url = trim($url, '/');
         }
-        return $value;
+        return $url;
     }
 
     public function forgetCache(string $cacheMethod, Redirect $redirect): void
