@@ -18,7 +18,7 @@ class Redirect extends Model
 
     protected static function booted(): void
     {
-        $cacheMethod = config('redirector.cache_method', 'multiple');
+        $cacheMethod = config('redirector.cache_method', 'full_list');
         static::saved(static function ($redirect) use ($cacheMethod) {
             self::forgetCache($cacheMethod, $redirect);
         });
@@ -51,7 +51,7 @@ class Redirect extends Model
 
     private static function forgetCache(mixed $cacheMethod, $redirect): void
     {
-        if ($cacheMethod === 'multiple') {
+        if ($cacheMethod === 'full_list') {
             Cache::forget('redirects_list');
         } else {
             Cache::forget("redirect_{$redirect->source_url}");

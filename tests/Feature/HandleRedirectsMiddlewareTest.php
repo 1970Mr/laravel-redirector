@@ -24,7 +24,7 @@ class HandleRedirectsMiddlewareTest extends TestCase
 
     public function test_redirect_with_full_list_cache_method(): void
     {
-        Config::set('redirector.cache_method', 'multiple');
+        Config::set('redirector.cache_method', 'full_list');
 
         Redirect::query()->create([
             'source_url' => url('/test'),
@@ -58,7 +58,7 @@ class HandleRedirectsMiddlewareTest extends TestCase
 
     public function test_no_redirect_with_has_inactive_redirect(): void
     {
-        Config::set('redirector.cache_method', 'multiple');
+        Config::set('redirector.cache_method', 'full_list');
 
         Redirect::query()->create([
             'source_url' => url('/test'),
