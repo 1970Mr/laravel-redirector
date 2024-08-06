@@ -22,7 +22,8 @@ class RedirectService
         if ($cacheMethod === 'full_list') {
             Cache::forget('redirects_list');
         } else {
-            Cache::forget("redirect_{$redirect->source_url}");
+            $sourceUrl = md5($redirect->source_url);
+            Cache::forget('redirect_' . $sourceUrl);
         }
     }
 }
