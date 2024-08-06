@@ -12,9 +12,12 @@ class RedirectListCommandTest extends TestCase
 
     public function test_redirect_list(): void
     {
+        $sourceUrl = config('app.url') . '/source-url';
+        $destinationUrl = config('app.url') . '/destination-url';
+
         Redirect::create([
-            'source_url' => 'source-url',
-            'destination_url' => 'destination-url',
+            'source_url' => $sourceUrl,
+            'destination_url' => $destinationUrl,
             'status_code' => 301,
             'is_active' => 1,
         ]);
@@ -22,7 +25,7 @@ class RedirectListCommandTest extends TestCase
         $this->artisan('redirect:list')
             ->expectsTable(
                 ['ID', 'Source URL', 'Destination URL', 'Status Code', 'Is Active'],
-                [[1, 'source-url', 'destination-url', 301, 1]]
+                [[1, $sourceUrl, $destinationUrl, 301, 1]]
             )
             ->assertExitCode(0);
     }

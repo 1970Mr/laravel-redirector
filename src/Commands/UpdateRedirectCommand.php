@@ -1,9 +1,10 @@
 <?php
 
-namespace Mr1970\LaravelRedirector\Console\Commands;
+namespace Mr1970\LaravelRedirector\Commands;
 
 use Illuminate\Console\Command;
 use Mr1970\LaravelRedirector\Models\Redirect;
+use Mr1970\LaravelRedirector\Facades\Redirect as RedirectFacade;
 
 class UpdateRedirectCommand extends Command
 {
@@ -26,7 +27,7 @@ class UpdateRedirectCommand extends Command
      */
     public function handle(): void
     {
-        $sourceUrl = $this->argument('source_url');
+        $sourceUrl = RedirectFacade::sanitizeUrl($this->argument('source_url'));
         $redirect = Redirect::query()->where('source_url', $sourceUrl)->first();
 
         if (!$redirect) {
@@ -38,7 +39,7 @@ class UpdateRedirectCommand extends Command
         $statusCode = $this->argument('status_code');
         $isActive = $this->argument('is_active');
 
-        Redirect::query()->update(
+        $redirect->update(
             [
                 'destination_url' => $destinationUrl,
                 'status_code' => $statusCode,

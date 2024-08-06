@@ -5,7 +5,7 @@ namespace Mr1970\LaravelRedirector\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
+use Mr1970\LaravelRedirector\Facades\Redirect as RedirectFacade;
 
 class Redirect extends Model
 {
@@ -20,11 +20,11 @@ class Redirect extends Model
     {
         $cacheMethod = config('redirector.cache_method', 'full_list');
         static::saved(static function ($redirect) use ($cacheMethod) {
-            self::forgetCache($cacheMethod, $redirect);
+            RedirectFacade::forgetCache($cacheMethod, $redirect);
         });
 
         static::deleted(static function ($redirect) use ($cacheMethod) {
-            self::forgetCache($cacheMethod, $redirect);
+            RedirectFacade::forgetCache($cacheMethod, $redirect);
         });
 
         parent::booted();
@@ -38,23 +38,14 @@ class Redirect extends Model
     protected function sourceUrl(): Attribute
     {
         return Attribute::make(
-            set: static fn(string $value) => trim($value, '/'),
+            set: static fn(string $value) => RedirectFacade::sanitizeUrl($value),
         );
     }
 
     protected function destinationUrl(): Attribute
     {
         return Attribute::make(
-            set: static fn(string $value) => trim($value, '/'),
+            set: static fn(string $value) => RedirectFacade::sanitizeUrl($value),
         );
-    }
-
-    private static function forgetCache(mixed $cacheMethod, $redirect): void
-    {
-        if ($cacheMethod === 'full_list') {
-            Cache::forget('redirects_list');
-        } else {
-            Cache::forget("redirect_{$redirect->source_url}");
-        }
     }
 }

@@ -1,8 +1,9 @@
 <?php
 
-namespace Mr1970\LaravelRedirector\Console\Commands;
+namespace Mr1970\LaravelRedirector\Commands;
 
 use Illuminate\Console\Command;
+use Mr1970\LaravelRedirector\Facades\Redirect as RedirectFacade;
 use Mr1970\LaravelRedirector\Models\Redirect;
 
 class DeleteRedirectCommand extends Command
@@ -26,8 +27,7 @@ class DeleteRedirectCommand extends Command
      */
     public function handle(): void
     {
-        $sourceUrl = $this->argument('source_url');
-
+        $sourceUrl = RedirectFacade::sanitizeUrl($this->argument('source_url'));
         $redirect = Redirect::query()->where('source_url', $sourceUrl)->first();
 
         if ($redirect) {

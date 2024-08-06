@@ -1,6 +1,6 @@
 <?php
 
-namespace Mr1970\LaravelRedirector\Console\Commands;
+namespace Mr1970\LaravelRedirector\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Database\UniqueConstraintViolationException;

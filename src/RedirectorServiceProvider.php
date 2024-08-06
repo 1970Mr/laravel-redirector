@@ -3,17 +3,20 @@
 namespace Mr1970\LaravelRedirector;
 
 use Illuminate\Support\ServiceProvider;
-use Mr1970\LaravelRedirector\Console\Commands\CreateRedirectCommand;
-use Mr1970\LaravelRedirector\Console\Commands\DeleteRedirectCommand;
-use Mr1970\LaravelRedirector\Console\Commands\RedirectListCommand;
-use Mr1970\LaravelRedirector\Console\Commands\UpdateRedirectCommand;
+use Mr1970\LaravelRedirector\Commands\CreateRedirectCommand;
+use Mr1970\LaravelRedirector\Commands\DeleteRedirectCommand;
+use Mr1970\LaravelRedirector\Commands\RedirectListCommand;
+use Mr1970\LaravelRedirector\Commands\UpdateRedirectCommand;
 use Mr1970\LaravelRedirector\Middleware\HandleRedirects;
+use Mr1970\LaravelRedirector\Services\RedirectService;
 
 class RedirectorServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        //
+        $this->app->singleton('redirector', static function () {
+            return resolve(RedirectService::class);
+        });
     }
 
     public function boot(): void
