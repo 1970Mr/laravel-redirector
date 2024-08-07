@@ -8,7 +8,7 @@ use Mr1970\LaravelRedirector\Commands\DeleteRedirectCommand;
 use Mr1970\LaravelRedirector\Commands\InstallRedirectorStack;
 use Mr1970\LaravelRedirector\Commands\RedirectListCommand;
 use Mr1970\LaravelRedirector\Commands\UpdateRedirectCommand;
-use Mr1970\LaravelRedirector\Middleware\HandleRedirects;
+use Mr1970\LaravelRedirector\Middlewares\HandleRedirects;
 use Mr1970\LaravelRedirector\Services\RedirectorService;
 
 class RedirectorServiceProvider extends ServiceProvider

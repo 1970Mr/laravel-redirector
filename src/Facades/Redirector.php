@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Facade;
  *
  * @see \Mr1970\LaravelRedirector\Services\RedirectorService
  */
-
 class Redirector extends Facade
 {
     protected static function getFacadeAccessor(): string

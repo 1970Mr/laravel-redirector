@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Mr1970\LaravelRedirector\Facades\Redirector;
 
+/**
+ * @property mixed $source_url
+ * @property string $destination_url
+ * @property int $status_code
+ * @property int $is_active
+ * @method static Builder active()
+ */
 class Redirect extends Model
 {
     protected $fillable = [

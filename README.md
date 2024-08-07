@@ -48,7 +48,7 @@ To use the redirect middleware, you can apply it to specific routes, groups of r
 #### Specific Routes
 
 ```php
-use Mr1970\LaravelRedirector\Middleware\HandleRedirects;
+use Mr1970\LaravelRedirector\Middlewares\HandleRedirects;
 
 Route::middleware([HandleRedirects::class])->group(function () {
     // Your routes here
@@ -61,7 +61,7 @@ In Laravel 11, you can add middleware globally in your `bootstrap/app.php` file:
 
 ```php
 ->withMiddleware(function (Middleware $middleware) {
-     $middleware->append(\Mr1970\LaravelRedirector\Middleware\HandleRedirects::class);
+     $middleware->append(\Mr1970\LaravelRedirector\Middlewares\HandleRedirects::class);
 })
 ```
 
@@ -76,7 +76,7 @@ Route::middleware(['redirector'])->group(function () {
 });
 
 // Using class name
-Route::middleware([\Mr1970\LaravelRedirector\Middleware\HandleRedirects::class])->group(function () {
+Route::middleware([\Mr1970\LaravelRedirector\Middlewares\HandleRedirects::class])->group(function () {
     // Your routes here
 });
 ```

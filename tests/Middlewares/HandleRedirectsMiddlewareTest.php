@@ -5,7 +5,7 @@ namespace Mr1970\LaravelRedirector\Tests\Middlewares;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
-use Mr1970\LaravelRedirector\Middleware\HandleRedirects;
+use Mr1970\LaravelRedirector\Middlewares\HandleRedirects;
 use Mr1970\LaravelRedirector\Models\Redirect;
 use Mr1970\LaravelRedirector\Tests\TestCase;
 

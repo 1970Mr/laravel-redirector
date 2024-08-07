@@ -1,9 +1,8 @@
 <?php
 
-namespace Mr1970\LaravelRedirector\Middleware;
+namespace Mr1970\LaravelRedirector\Middlewares;
 
 use Closure;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Mr1970\LaravelRedirector\Models\Redirect;
@@ -38,7 +37,6 @@ class HandleRedirects
      */
     protected function getRedirectFromFullList(string $currentUrl): ?Redirect
     {
-        /** @var Collection $redirects */
         $redirects = Cache::remember('redirects_list', config('redirector.cache_ttl'), static function () {
             return Redirect::active()->get();
         });
@@ -52,7 +50,7 @@ class HandleRedirects
     {
         $cacheKey = 'redirect_' . md5($currentUrl);
         return Cache::remember($cacheKey, config('redirector.cache_ttl'), static function () use ($currentUrl) {
-            return Redirect::query()->where('source_url', $currentUrl)->active()->first();
+            return Redirect::active()->where('source_url', $currentUrl)->first();
         });
     }
 }
