@@ -40,6 +40,7 @@
     },
     "require-dev": {
         "larastan/larastan": "2.9",
+        "laravel/pint": "^1.17",
         "orchestra/testbench": "^9.0.0||^8.22.0",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "*",
@@ -48,7 +49,8 @@
     },
     "scripts": {
         "test": "phpunit --colors=always",
-        "analyse": "vendor/bin/phpstan analyse"
+        "analyse": "vendor/bin/phpstan analyse",
+        "pint": "vendor/bin/pint"
     },
     "extra": {
         "laravel": {

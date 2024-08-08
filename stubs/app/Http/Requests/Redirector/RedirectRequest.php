@@ -30,7 +30,7 @@ class RedirectRequest extends FormRequest
         ];
 
         if (strtolower($this->method()) === 'put') {
-            $rules['source_url'] .= ',source_url,' . $this->route('redirect')->id;
+            $rules['source_url'] .= ',source_url,'.$this->route('redirect')->id;
         }
 
         return $rules;
@@ -49,7 +49,7 @@ class RedirectRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'is_active' => (bool)$this->is_active,
+            'is_active' => (bool) $this->is_active,
             'source_url' => Redirector::sanitizeUrl($this->source_url),
             'destination_url' => Redirector::sanitizeUrl($this->destination_url),
         ]);

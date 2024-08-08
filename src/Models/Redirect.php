@@ -12,6 +12,7 @@ use Mr1970\LaravelRedirector\Facades\Redirector;
  * @property string $destination_url
  * @property int $status_code
  * @property int $is_active
+ *
  * @method static Builder active()
  */
 class Redirect extends Model
@@ -45,14 +46,14 @@ class Redirect extends Model
     protected function sourceUrl(): Attribute
     {
         return Attribute::make(
-            set: static fn(string $value) => Redirector::sanitizeUrl($value),
+            set: static fn (string $value) => Redirector::sanitizeUrl($value),
         );
     }
 
     protected function destinationUrl(): Attribute
     {
         return Attribute::make(
-            set: static fn(string $value) => Redirector::sanitizeUrl($value),
+            set: static fn (string $value) => Redirector::sanitizeUrl($value),
         );
     }
 }

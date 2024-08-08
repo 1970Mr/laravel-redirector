@@ -12,8 +12,8 @@ class RedirectListCommandTest extends TestCase
 
     public function test_redirect_list(): void
     {
-        $sourceUrl = config('app.url') . '/source-url';
-        $destinationUrl = config('app.url') . '/destination-url';
+        $sourceUrl = config('app.url').'/source-url';
+        $destinationUrl = config('app.url').'/destination-url';
 
         Redirect::create([
             'source_url' => $sourceUrl,

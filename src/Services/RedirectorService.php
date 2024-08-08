@@ -11,13 +11,13 @@ class RedirectorService
     {
         $baseUrl = trim(config('app.url'), '/');
 
-        if (!$url) {
+        if (! $url) {
             return $baseUrl;
         }
 
         $url = trim($url, '/');
-        if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            $url = $baseUrl . '/' . $url;
+        if (! filter_var($url, FILTER_VALIDATE_URL)) {
+            $url = $baseUrl.'/'.$url;
         }
 
         return $url;
@@ -29,7 +29,7 @@ class RedirectorService
             Cache::forget('redirects_list');
         } else {
             $sourceUrl = md5($redirect->source_url);
-            Cache::forget('redirect_' . $sourceUrl);
+            Cache::forget('redirect_'.$sourceUrl);
         }
     }
 }

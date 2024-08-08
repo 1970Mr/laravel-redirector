@@ -18,7 +18,7 @@ class HandleRedirectsMiddlewareTest extends TestCase
         parent::setUp();
 
         // Register test routes
-        Route::get('/test', static fn() => 'Test')
+        Route::get('/test', static fn () => 'Test')
             ->middleware(HandleRedirects::class);
     }
 

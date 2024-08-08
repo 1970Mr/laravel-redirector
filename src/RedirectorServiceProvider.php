@@ -83,6 +83,6 @@ class RedirectorServiceProvider extends ServiceProvider
 
     private function basePath(string $path): string
     {
-        return __DIR__ . '/../' . trim($path, '/');
+        return __DIR__.'/../'.trim($path, '/');
     }
 }

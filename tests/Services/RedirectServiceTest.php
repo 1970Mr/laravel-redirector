@@ -2,24 +2,25 @@
 
 namespace Mr1970\LaravelRedirector\Tests\Services;
 
-use Illuminate\Support\Facades\Config;
-use Mr1970\LaravelRedirector\Services\RedirectorService;
-use Mr1970\LaravelRedirector\Models\Redirect;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
+use Mr1970\LaravelRedirector\Models\Redirect;
+use Mr1970\LaravelRedirector\Services\RedirectorService;
 use Mr1970\LaravelRedirector\Tests\TestCase;
 
 class RedirectServiceTest extends TestCase
 {
-    use WithFaker, RefreshDatabase;
+    use RefreshDatabase;
+    use WithFaker;
 
     protected RedirectorService $redirectService;
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->redirectService = new RedirectorService();
+        $this->redirectService = new RedirectorService;
     }
 
     public function test_sanitize_url_with_full_url(): void
@@ -67,7 +68,7 @@ class RedirectServiceTest extends TestCase
 
         $sourceUrl = $this->redirectService->sanitizeUrl('source-url');
         $destinationUrl = $this->redirectService->sanitizeUrl('destination-url');
-        $cacheKey = 'redirect_' . md5($sourceUrl);
+        $cacheKey = 'redirect_'.md5($sourceUrl);
 
         Cache::shouldReceive('forget')
             ->twice()

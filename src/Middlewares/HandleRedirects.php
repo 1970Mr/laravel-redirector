@@ -13,7 +13,7 @@ class HandleRedirects
     /**
      * Handle an incoming request.
      *
-     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -29,6 +29,7 @@ class HandleRedirects
         if ($redirect) {
             return redirect($redirect->destination_url, $redirect->status_code);
         }
+
         return $next($request);
     }
 
@@ -40,6 +41,7 @@ class HandleRedirects
         $redirects = Cache::remember('redirects_list', config('redirector.cache_ttl'), static function () {
             return Redirect::active()->get();
         });
+
         return $redirects->firstWhere('source_url', $currentUrl);
     }
 
@@ -48,7 +50,8 @@ class HandleRedirects
      */
     protected function getRedirectFromSingleCache(string $currentUrl): ?Redirect
     {
-        $cacheKey = 'redirect_' . md5($currentUrl);
+        $cacheKey = 'redirect_'.md5($currentUrl);
+
         return Cache::remember($cacheKey, config('redirector.cache_ttl'), static function () use ($currentUrl) {
             return Redirect::active()->where('source_url', $currentUrl)->first();
         });

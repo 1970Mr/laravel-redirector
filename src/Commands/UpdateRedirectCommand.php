@@ -3,8 +3,8 @@
 namespace Mr1970\LaravelRedirector\Commands;
 
 use Illuminate\Console\Command;
-use Mr1970\LaravelRedirector\Models\Redirect;
 use Mr1970\LaravelRedirector\Facades\Redirector;
+use Mr1970\LaravelRedirector\Models\Redirect;
 
 class UpdateRedirectCommand extends Command
 {
@@ -30,8 +30,9 @@ class UpdateRedirectCommand extends Command
         $sourceUrl = Redirector::sanitizeUrl($this->argument('source_url'));
         $redirect = Redirect::query()->where('source_url', $sourceUrl)->first();
 
-        if (!$redirect) {
+        if (! $redirect) {
             $this->error('Redirect not found.');
+
             return;
         }
 

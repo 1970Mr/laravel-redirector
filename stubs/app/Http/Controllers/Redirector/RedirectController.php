@@ -12,6 +12,7 @@ class RedirectController
     public function index(): View
     {
         $redirects = Redirect::all();
+
         return view('redirector.index', compact('redirects'));
     }
 
@@ -23,6 +24,7 @@ class RedirectController
     public function store(RedirectRequest $request): RedirectResponse
     {
         Redirect::create($request->validated());
+
         return to_route('redirects.index')
             ->with('success', __('Redirect created successfully.'));
     }
@@ -35,6 +37,7 @@ class RedirectController
     public function update(RedirectRequest $request, Redirect $redirect): RedirectResponse
     {
         $redirect->update($request->validated());
+
         return to_route('redirects.index')
             ->with('success', __('Redirect updated successfully.'));
     }
@@ -42,6 +45,7 @@ class RedirectController
     public function destroy(Redirect $redirect): RedirectResponse
     {
         $redirect->delete();
+
         return back()->with('success', __('Redirect deleted successfully.'));
     }
 }

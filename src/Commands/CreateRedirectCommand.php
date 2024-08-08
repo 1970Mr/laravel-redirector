@@ -33,14 +33,12 @@ class CreateRedirectCommand extends Command
         $isActive = $this->argument('is_active');
 
         try {
-            Redirect::query()->create(
-                [
-                    'source_url' => $sourceUrl,
-                    'destination_url' => $destinationUrl,
-                    'status_code' => $statusCode,
-                    'is_active' => $isActive,
-                ]
-            );
+            Redirect::query()->create([
+                'source_url' => $sourceUrl,
+                'destination_url' => $destinationUrl,
+                'status_code' => $statusCode,
+                'is_active' => $isActive,
+            ]);
 
             $this->info('Redirect created successfully.');
         } catch (UniqueConstraintViolationException $e) {

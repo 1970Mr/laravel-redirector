@@ -2,8 +2,8 @@
 
 namespace Mr1970\LaravelRedirector\Tests;
 
-use Orchestra\Testbench\TestCase as BaseTestCase;
 use Mr1970\LaravelRedirector\RedirectorServiceProvider;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {

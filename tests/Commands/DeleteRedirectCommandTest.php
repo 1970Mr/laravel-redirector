@@ -28,7 +28,7 @@ class DeleteRedirectCommandTest extends TestCase
         ])->assertExitCode(0);
 
         $this->assertDatabaseMissing('redirects', [
-            'source_url' => $sourceUrl
+            'source_url' => $sourceUrl,
         ]);
     }
 }

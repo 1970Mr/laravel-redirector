@@ -6,7 +6,7 @@ use Illuminate\Filesystem\Filesystem;
 use Mockery;
 use Mr1970\LaravelRedirector\Tests\TestCase;
 
-class InstallRedirectorStackTest  extends TestCase
+class InstallRedirectorStackTest extends TestCase
 {
     public function test_it_installs_redirector_scaffolding(): void
     {
